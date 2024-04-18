@@ -33,6 +33,9 @@ def screenshot(mode, offset=320, save_path='captured_images', is_centered=True, 
         frame = camera.grab()
 
     screenshot_path = f'{save_path}/{timestamp}_{unique_id}.png'
+
+    print(frame)
+    print(type(frame))
     screenshot = Image.fromarray(frame)
     screenshot.save(screenshot_path)
     print(f'截图成功，保存路径为 {screenshot_path}')
@@ -54,10 +57,10 @@ def main():
     def on_capslock(event):
         if event.name == 'caps lock' and event.event_type == keyboard.KEY_DOWN:
             screenshot(args.mode, args.offset, args.save_path, args.is_centered, args.left, args.top, args.right, args.bottom)
-
+    print('截图启动')
+    print('按下CapsLock键截图，按下Esc键停止程序')
     # 监听CapsLock键事件
     keyboard.on_press_key('caps lock', on_capslock)
-
     # 等待Esc键停止程序
     keyboard.wait('esc')
 
